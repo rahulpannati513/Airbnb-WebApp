@@ -25,4 +25,15 @@ public class GlobalLevelException extends RuntimeException {
         response.setStatus(false);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse> handleException(Exception e) {
+        ApiResponse response = new ApiResponse();
+        response.setMessage(e.getMessage());
+        response.setStatus(false);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    
 }
